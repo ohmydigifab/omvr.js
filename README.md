@@ -1,2 +1,2 @@
 # omvr.js
-a VR javascript library
+a javascript VR library
