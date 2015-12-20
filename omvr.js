@@ -100,7 +100,7 @@ function OMVR() {
 
 	"" ].join("\n");
 
-	var steroEnabled = false;
+	var stereoEnabled = false;
 
 	return {
 		setMyAttitude : function(value) {
@@ -247,7 +247,7 @@ function OMVR() {
 				camera.lookAt(camera.target);
 			}
 
-			if (steroEnabled) {
+			if (stereoEnabled) {
 				effect.render(scene, camera);
 
 			} else {
@@ -255,8 +255,8 @@ function OMVR() {
 			}
 		},
 
-		setSteroEnabled : function(value) {
-			steroEnabled = value;
+		setStereoEnabled : function(value) {
+			stereoEnabled = value;
 			onWindowResize();
 		}
 	}
