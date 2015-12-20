@@ -2,7 +2,7 @@
  * @author takumadx / http://www.ohmydigifab.com/
  */
 
-var OMVR = function() {
+function OMVR() {
 	var myAttitude = {
 		Roll : 0,
 		Pitch : 0,
@@ -100,16 +100,18 @@ var OMVR = function() {
 
 	"" ].join("\n");
 
+	var steroEnabled = false;
+
 	return {
-		set_myAttitude : function(value) {
+		setMyAttitude : function(value) {
 			myAttitude = value;
 		},
 
-		set_vehicleAttitude : function(value) {
+		setVehicleAttitude : function(value) {
 			vehicleAttitude = value;
 		},
 
-		add_fisheyeCamera : function(default_image_url, imageUrl, flipX, flipY, image_updated_callback, attitude) {
+		addFisheyeCamera : function(default_image_url, imageUrl, flipX, flipY, image_updated_callback, attitude) {
 			var geometry = new THREE.SphereGeometry(500, 100, 100, 0, Math.PI);
 			geometry.scale(1, 1, 1);
 
@@ -153,7 +155,7 @@ var OMVR = function() {
 			});
 		},
 
-		init : function(container) {
+		init : function(canvas) {
 
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
 			camera.position = new THREE.Vector3(0, 0, 0);
@@ -164,6 +166,7 @@ var OMVR = function() {
 			scene = new THREE.Scene();
 
 			renderer = new THREE.WebGLRenderer({
+				canvas : canvas,
 				antialias : true
 			});
 			renderer.setPixelRatio(window.devicePixelRatio);
@@ -244,7 +247,7 @@ var OMVR = function() {
 				camera.lookAt(camera.target);
 			}
 
-			if (this.stero_enabled) {
+			if (steroEnabled) {
 				effect.render(scene, camera);
 
 			} else {
@@ -252,6 +255,9 @@ var OMVR = function() {
 			}
 		},
 
-		stero_enabled : false
+		setSteroEnabled : function(value) {
+			steroEnabled = value;
+			onWindowResize();
+		}
 	}
 }
