@@ -179,6 +179,11 @@ function OMVR() {
 			window.addEventListener('resize', onWindowResize, false);
 		},
 
+		setFov : function(value) {
+			camera.fov = value;
+			onWindowResize();
+		},
+
 		animate : function() {
 			fisheyeCameraList.forEach(function(fisheyeCamera) {
 				if (fisheyeCamera.loading == false) {
